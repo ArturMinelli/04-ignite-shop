@@ -14,19 +14,3 @@ export const Header = styled('header', {
   maxWidth: 1180,
   margin: '0 auto',
 })
-
-export const LogoContainer = styled('div', {
-  display: 'flex',
-  alignItems: "flex-start",
-  gap: '0.5rem',
-
-  div: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-
-  span: {
-    color: '$gray300',
-    fontSize: '0.875rem',
-  }
-})
