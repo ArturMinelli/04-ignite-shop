@@ -33,7 +33,7 @@ export const Product = styled('a', {
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
-    padding: '2rem',
+    padding: '1.5rem',
 
     transform: 'translateY(110%)',
     opacity: 0,
@@ -48,7 +48,8 @@ export const Product = styled('a', {
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
 
     strong: {
-      fontSize: '$lg'
+      fontSize: '$lg',
+      color: '$gray100'
     },
 
     span: {
