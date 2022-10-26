@@ -13,4 +13,8 @@ export const Header = styled('header', {
   padding: '2rem 0',
   maxWidth: 1180,
   margin: '0 auto',
+
+  'img:hover': {
+    cursor: 'pointer',
+  }
 })

@@ -15,9 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Link
           href='/'
         >
-          <a>
-            <Image src={logoImg} alt="Ignite Shop logo"/>
-          </a>
+          <Image src={logoImg} alt="Ignite Shop logo"/>
         </Link>
       </Header>
 
