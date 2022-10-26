@@ -4,7 +4,9 @@ import tShirt1 from '../../assets/t-shirts/t-shirt-1.png'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { stripe } from '../../lib/stripe'
 import Stripe from 'stripe'
-import handler from '../../api/checkout'
+import handler from '../api/checkout'
+import axios from 'axios'
+import { useState } from 'react'
 
 interface Productprops {
   product: {
@@ -18,14 +20,34 @@ interface Productprops {
 }
 
 export default function Product({ product }: Productprops) {
-  function handleBuyProduct() {
-    console.log(product.defaultPriceId)
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState<boolean>(false)
+
+  async function handleBuyProduct() {
+    try {
+      setIsCreatingCheckoutSession(true)
+
+      const response = await axios.post('/api/checkout', {
+        priceId: product.defaultPriceId
+      })
+
+      const { checkoutUrl } = response.data
+
+      window.location.href = checkoutUrl
+    } catch (err) {
+
+      setIsCreatingCheckoutSession(false)
+      alert('Falha ao redirecionar para checkout')
+    }
+  }
+
+  if(!product) {
+    return <></>
   }
 
   return (
     <ProductContainer>
       <ImageContainer>
-        <Image src={tShirt1} width={400} height={400} alt="Product image"/>
+        <Image src={product.imageUrl} width={400} height={400} alt="Product image"/>
       </ImageContainer>
       <ProductDetails>
         <h1>{product.name}</h1>
@@ -33,7 +55,7 @@ export default function Product({ product }: Productprops) {
 
         <p>{product.description}</p>
 
-        <button onClick={handleBuyProduct}>
+        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSession}>
           Comprar agora
         </button>
       </ProductDetails>
