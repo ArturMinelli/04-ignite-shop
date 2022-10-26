@@ -11,15 +11,13 @@ import { stripe } from "../lib/stripe";
 import { GetStaticProps } from "next";
 import Stripe from "stripe";
 
-interface Product {
-  id: string;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
-
 interface HomeProps {
-  products: Product[];
+  products: {
+    id: string;
+    name: string;
+    imageUrl: string;
+    price: string;
+  }[];
 }
 
 export default function Home({ products }: HomeProps) {
