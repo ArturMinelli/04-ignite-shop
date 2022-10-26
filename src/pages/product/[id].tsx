@@ -4,6 +4,7 @@ import tShirt1 from '../../assets/t-shirts/t-shirt-1.png'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { stripe } from '../../lib/stripe'
 import Stripe from 'stripe'
+import handler from '../../api/checkout'
 
 interface Productprops {
   product: {
@@ -12,10 +13,15 @@ interface Productprops {
     imageUrl: string;
     price: string;
     description: string;
+    defaultPriceId: string;
   };
 }
 
 export default function Product({ product }: Productprops) {
+  function handleBuyProduct() {
+    console.log(product.defaultPriceId)
+  }
+
   return (
     <ProductContainer>
       <ImageContainer>
@@ -27,7 +33,7 @@ export default function Product({ product }: Productprops) {
 
         <p>{product.description}</p>
 
-        <button>
+        <button onClick={handleBuyProduct}>
           Comprar agora
         </button>
       </ProductDetails>
@@ -62,6 +68,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params
           currency: 'BRL',
         }).format(price.unit_amount / 100),
         description: product.description,
+        defaultPriceId: price.id
       }
     },
     revalidate: 60 * 60 * 1 // 1 hour
