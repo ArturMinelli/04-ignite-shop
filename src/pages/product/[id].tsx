@@ -1,7 +1,7 @@
 import { ImageContainer, ProductContainer, ProductDetails } from '../../styles/pages/product'
 import Image from 'next/future/image'
 import tShirt1 from '../../assets/t-shirts/t-shirt-1.png'
-import { GetStaticProps } from 'next'
+import { GetStaticPaths, GetStaticProps } from 'next'
 import { stripe } from '../../lib/stripe'
 import Stripe from 'stripe'
 
@@ -35,6 +35,14 @@ export default function Product({ product }: Productprops) {
   )
 }
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true
+  }
+}
+
+
 export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params }) => {
   const productId = params.id;
   const product = await stripe.products.retrieve(productId, {
@@ -52,7 +60,7 @@ export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params
         price: new Intl.NumberFormat('pt-BR', {
           style: 'currency',
           currency: 'BRL',
-        }).format(price.unit_amount),
+        }).format(price.unit_amount / 100),
         description: product.description,
       }
     },
