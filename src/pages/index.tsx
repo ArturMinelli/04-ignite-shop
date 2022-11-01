@@ -10,7 +10,7 @@ import 'keen-slider/keen-slider.min.css'
 import { stripe } from "../lib/stripe";
 import { GetStaticProps } from "next";
 import Stripe from "stripe";
-import { HandbagButton } from "../components/HandbagButton";
+import { CartButton } from "../components/CartButton";
 import { MouseEvent } from "react";
 
 interface HomeProps {
@@ -31,6 +31,7 @@ export default function Home({ products }: HomeProps) {
   })
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    event.preventDefault()
     console.log('hi')
   }
 
@@ -59,9 +60,9 @@ export default function Home({ products }: HomeProps) {
                   <strong>{product.name}</strong>
                   <span>{product.price}</span>
                 </div>
-                <HandbagButton
+                <CartButton
                   onClick={handleClick}
-                  size="small"
+                  size="large"
                   color="white"
                   backgroundColor="green"
                 />

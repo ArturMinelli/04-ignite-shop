@@ -1,9 +1,13 @@
 import { styled } from "../../styles";
 
-export const HandbagButtonContainer = styled('button', {
+export const CartButtonContainer = styled('button', {
   padding: '0.5rem',
   border: 'none',
   borderRadius: 6,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
 
   '&:hover': {
     cursor: 'pointer',
