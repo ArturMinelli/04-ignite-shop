@@ -9,6 +9,11 @@ import { useCart } from '../../hooks/useCart'
 export function Cart() {
   const { cartProducts, removeCartProduct } = useCart()
 
+  const carProducstAmount = cartProducts.length
+  const totalPrice = cartProducts.reduce((accum, product) => {
+    return accum + product.price
+  }, 0)
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -16,7 +21,7 @@ export function Cart() {
           size="small"
           color="gray"
           backgroundColor="gray"
-          cartProductsAmount={cartProducts.length}
+          cartProductsAmount={carProducstAmount}
         />
       </Dialog.Trigger>
       <Dialog.Portal>
@@ -50,11 +55,11 @@ export function Cart() {
           <CartFooter>
             <div className="quantity">
               Quantidade
-              <span>3</span>
+              <span>{carProducstAmount}</span>
             </div>
             <div className="total">
               Valor total
-              <span>R$ 69,90</span>
+              <span>{totalPrice}</span>
             </div>
             <button>Finalizar compra</button>
           </CartFooter>
