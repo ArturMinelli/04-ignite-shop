@@ -13,13 +13,15 @@ import Stripe from "stripe";
 import { CartButton } from "../components/CartButton";
 import { MouseEvent } from "react";
 
+export interface Product {
+  id: string;
+  name: string;
+  imageUrl: string;
+  price: string;
+}
+
 interface HomeProps {
-  products: {
-    id: string;
-    name: string;
-    imageUrl: string;
-    price: string;
-  }[];
+  products: Product[];
 }
 
 export default function Home({ products }: HomeProps) {

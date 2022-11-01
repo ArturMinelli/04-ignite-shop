@@ -7,24 +7,27 @@ import Image from 'next/future/image'
 import Link from "next/link"
 
 import { Cart } from "../components/Cart"
+import { CartProvider } from "../contexts/CartContext"
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <Container>
-      <Header>
-        <Link
-          href='/'
-        >
-          <Image src={logoImg} alt="Ignite Shop logo"/>
-        </Link>
+    <CartProvider>
+      <Container>
+        <Header>
+          <Link
+            href='/'
+          >
+            <Image src={logoImg} alt="Ignite Shop logo"/>
+          </Link>
 
-        <Cart />
+          <Cart />
 
-      </Header>
+        </Header>
 
-      <Component {...pageProps} />
-    </Container>
+        <Component {...pageProps} />
+      </Container>
+    </CartProvider>
   )
 }

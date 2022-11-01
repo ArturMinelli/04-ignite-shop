@@ -34,7 +34,7 @@ export const CartContent = styled(DialogContent, {
 export const CartItemsContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
-  gap: '1.5rem',
+  gap: '0.75rem',
 })
 
 export const CartItem = styled('div', {
@@ -58,7 +58,7 @@ export const CartItem = styled('div', {
   '.infoContainer': {
     display: 'flex',
     flexDirection: 'column',
-    gap: '0.75rem',
+    gap: '0.5rem',
 
     span: {
       color: '$gray300',
@@ -78,9 +78,11 @@ export const CartItem = styled('div', {
       background: 'transparent',
       border: 'none',
       marginTop: 'auto',
+      transition: 'all 0.2s',
 
       '&:hover': {
         cursor: 'pointer',
+        color: '$green300',
       }
     }
   }
