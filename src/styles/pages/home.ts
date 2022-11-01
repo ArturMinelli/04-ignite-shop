@@ -33,7 +33,7 @@ export const Product = styled('div', {
     bottom: '0.25rem',
     left: '0.25rem',
     right: '0.25rem',
-    padding: '1.5rem',
+    padding: '1rem',
 
     transform: 'translateY(110%)',
     opacity: 0,
@@ -47,15 +47,21 @@ export const Product = styled('div', {
 
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
 
-    strong: {
-      fontSize: '$lg',
-      color: '$gray100'
-    },
+    div: {
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.25rem',
 
-    span: {
-      fontSize: '$xl',
-      fontWeight: 'bold',
-      color: '$green500'
+      strong: {
+        fontSize: '$md',
+        color: '$gray100'
+      },
+
+      span: {
+        fontSize: '$lg',
+        fontWeight: 'bold',
+        color: '$green500'
+      }
     }
   }
 })
