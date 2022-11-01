@@ -31,13 +31,13 @@ export const CartContent = styled(DialogContent, {
   }
 })
 
-export const CartItemsContainer = styled('div', {
+export const CartProductsContainer = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '0.75rem',
 })
 
-export const CartItem = styled('div', {
+export const CartProduct = styled('div', {
   display: 'flex',
   gap: '0.75rem',
 

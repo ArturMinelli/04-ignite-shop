@@ -1,12 +1,15 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { CartButton } from '../CartButton'
-import { CartContent, CartFooter, CartItem, CartItemsContainer } from './styles'
+import { CartContent, CartFooter, CartProduct, CartProductsContainer } from './styles'
 import { X } from 'phosphor-react'
 import Image from 'next/future/image'
 
 import tShirt from '../../assets/t-shirts/t-shirt-1.png'
+import { useCart } from '../../hooks/useCart'
 
 export function Cart() {
+  const { cartProducts } = useCart()
+
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -23,8 +26,8 @@ export function Cart() {
           </Dialog.Close>
           <h2>Sacola de compras</h2>
 
-          <CartItemsContainer>
-            <CartItem>
+          <CartProductsContainer>
+            <CartProduct>
               <div className="imageContainer">
                 <Image src={tShirt} alt='' width={80} height={80}/>
               </div>
@@ -33,28 +36,8 @@ export function Cart() {
                 <strong>R$ 69,90</strong>
                 <button>Remover</button>
               </div>
-            </CartItem>
-            <CartItem>
-              <div className="imageContainer">
-                <Image src={tShirt} alt='' width={80} height={80}/>
-              </div>
-              <div className="infoContainer">
-                <span>Camiseta Beyond the Limits</span>
-                <strong>R$ 69,90</strong>
-                <button>Remover</button>
-              </div>
-            </CartItem>
-            <CartItem>
-              <div className="imageContainer">
-                <Image src={tShirt} alt='' width={80} height={80}/>
-              </div>
-              <div className="infoContainer">
-                <span>Camiseta Beyond the Limits</span>
-                <strong>R$ 69,90</strong>
-                <button>Remover</button>
-              </div>
-            </CartItem>
-          </CartItemsContainer>
+            </CartProduct>
+          </CartProductsContainer>
 
           <CartFooter>
             <div className="quantity">
