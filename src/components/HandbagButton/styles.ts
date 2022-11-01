@@ -1,9 +1,13 @@
-import { styled, theme } from "../../styles";
+import { styled } from "../../styles";
 
 export const HandbagButtonContainer = styled('button', {
   padding: '0.5rem',
   border: 'none',
   borderRadius: 6,
+
+  '&:hover': {
+    cursor: 'pointer',
+  },
 
   variants: {
       color: {

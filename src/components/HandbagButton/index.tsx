@@ -11,7 +11,7 @@ export function HandbagButton(props: HandbagButtonProps) {
   return (
     <HandbagButtonContainer
       {...props}
-    >
+      onClick={() => console.log('hi there')}>
       <Handbag weight="bold"/>
     </HandbagButtonContainer>
   )
