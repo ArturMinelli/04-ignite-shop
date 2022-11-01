@@ -12,6 +12,7 @@ import { GetStaticProps } from "next";
 import Stripe from "stripe";
 import { CartButton } from "../components/CartButton";
 import { MouseEvent } from "react";
+import { useCart } from "../hooks/useCart";
 
 export interface Product {
   id: string;
@@ -31,10 +32,11 @@ export default function Home({ products }: HomeProps) {
       spacing: 48,
     }
   })
+  const { addCartProduct } = useCart()
 
-  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+  function handleAddCartProduct(event: MouseEvent<HTMLButtonElement>, product: Product) {
     event.preventDefault()
-    console.log('hi')
+    addCartProduct(product)
   }
 
   return (
@@ -63,7 +65,7 @@ export default function Home({ products }: HomeProps) {
                   <span>{product.price}</span>
                 </div>
                 <CartButton
-                  onClick={handleClick}
+                  onClick={(event) => handleAddCartProduct(event, product)}
                   size="large"
                   color="white"
                   backgroundColor="green"

@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
+import Image from 'next/future/image'
 import Stripe from "stripe";
 import { stripe } from "../lib/stripe";
 import { ImageContainer, SuccessContainer } from "../styles/pages/success";
@@ -25,7 +26,7 @@ export default function Success({ customerName, product}: SuccessProps) {
         <h1>Compra efetuada!</h1>
 
         <ImageContainer>
-          <img src={product.imageUrl} alt={product.name} />
+          <Image src={product.imageUrl} alt={product.name} />
         </ImageContainer>
 
         <p>
