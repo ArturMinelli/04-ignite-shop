@@ -13,6 +13,21 @@ export const CartButtonContainer = styled('button', {
     cursor: 'pointer',
   },
 
+  span: {
+    position: 'absolute',
+    top: '-25%',
+    right: '-25%',
+
+    width: '1.5rem',
+    height: '1.5rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0.25rem',
+    background: '$green500',
+    borderRadius: '50%'
+  },
+
   variants: {
       color: {
       white: {color: '$white'},

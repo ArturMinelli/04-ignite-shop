@@ -6,14 +6,18 @@ interface CartButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: 'white' | 'lightgray' | 'gray';
   backgroundColor: 'green' | 'gray';
   size: 'small' | 'large';
+  cartProductsAmount?: number;
 }
 
-export function CartButton(props: CartButtonProps) {
+export function CartButton({ cartProductsAmount = 0, ...rest }: CartButtonProps) {
   return (
     <CartButtonContainer
-      {...props}
+      {...rest}
     >
       <Handbag weight="bold"/>
+      {cartProductsAmount > 0 && (
+        <span>{cartProductsAmount}</span>
+      )}
     </CartButtonContainer>
   )
 }

@@ -4,7 +4,6 @@ import { CartContent, CartFooter, CartProduct, CartProductsContainer } from './s
 import { X } from 'phosphor-react'
 import Image from 'next/future/image'
 
-import tShirt from '../../assets/t-shirts/t-shirt-1.png'
 import { useCart } from '../../hooks/useCart'
 
 export function Cart() {
@@ -17,6 +16,7 @@ export function Cart() {
           size="small"
           color="gray"
           backgroundColor="gray"
+          cartProductsAmount={cartProducts.length}
         />
       </Dialog.Trigger>
       <Dialog.Portal>
