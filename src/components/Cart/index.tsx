@@ -27,16 +27,20 @@ export function Cart() {
           <h2>Sacola de compras</h2>
 
           <CartProductsContainer>
-            <CartProduct>
-              <div className="imageContainer">
-                <Image src={tShirt} alt='' width={80} height={80}/>
-              </div>
-              <div className="infoContainer">
-                <span>Camiseta Beyond the Limits</span>
-                <strong>R$ 69,90</strong>
-                <button>Remover</button>
-              </div>
-            </CartProduct>
+            {cartProducts.map((product) => {
+              return (
+              <CartProduct>
+                <div className="imageContainer">
+                  <Image src={product.imageUrl} alt='t-shirt image' width={80} height={80}/>
+                </div>
+                <div className="infoContainer">
+                  <span>{product.name}</span>
+                  <strong>{product.price}</strong>
+                  <button>Remover</button>
+                </div>
+              </CartProduct>
+              )
+            })}
           </CartProductsContainer>
 
           <CartFooter>
