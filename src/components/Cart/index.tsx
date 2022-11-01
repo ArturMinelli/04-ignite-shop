@@ -8,7 +8,7 @@ import tShirt from '../../assets/t-shirts/t-shirt-1.png'
 import { useCart } from '../../hooks/useCart'
 
 export function Cart() {
-  const { cartProducts } = useCart()
+  const { cartProducts, removeCartProduct } = useCart()
 
   return (
     <Dialog.Root>
@@ -36,7 +36,11 @@ export function Cart() {
                 <div className="infoContainer">
                   <span>{product.name}</span>
                   <strong>{product.price}</strong>
-                  <button>Remover</button>
+                  <button
+                    onClick={() => removeCartProduct(product.id)}
+                  >
+                    Remover
+                  </button>
                 </div>
               </CartProduct>
               )
