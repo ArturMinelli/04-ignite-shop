@@ -1,7 +1,8 @@
 import { Handbag } from "phosphor-react";
+import { ButtonHTMLAttributes } from "react";
 import { HandbagButtonContainer } from "./styles";
 
-interface HandbagButtonProps {
+interface HandbagButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color: 'white' | 'lightgray' | 'gray';
   backgroundColor: 'green' | 'gray';
   size: 'small' | 'large';
@@ -11,7 +12,7 @@ export function HandbagButton(props: HandbagButtonProps) {
   return (
     <HandbagButtonContainer
       {...props}
-      onClick={() => console.log('hi there')}>
+    >
       <Handbag weight="bold"/>
     </HandbagButtonContainer>
   )

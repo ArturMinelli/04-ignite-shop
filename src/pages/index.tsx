@@ -1,7 +1,6 @@
 import { HomeContainer } from "../styles/pages/home";
 import { Product } from "../styles/pages/home";
 import Link from 'next/link'
-import { Handbag } from 'phosphor-react'
 import { useKeenSlider } from 'keen-slider/react'
 
 import Image from "next/future/image"
@@ -12,6 +11,7 @@ import { stripe } from "../lib/stripe";
 import { GetStaticProps } from "next";
 import Stripe from "stripe";
 import { HandbagButton } from "../components/HandbagButton";
+import { MouseEvent } from "react";
 
 interface HomeProps {
   products: {
@@ -29,6 +29,10 @@ export default function Home({ products }: HomeProps) {
       spacing: 48,
     }
   })
+
+  function handleClick(event: MouseEvent<HTMLButtonElement>) {
+    console.log('hi')
+  }
 
   return (
     <>
@@ -56,6 +60,7 @@ export default function Home({ products }: HomeProps) {
                   <span>{product.price}</span>
                 </div>
                 <HandbagButton
+                  onClick={handleClick}
                   size="small"
                   color="white"
                   backgroundColor="green"
