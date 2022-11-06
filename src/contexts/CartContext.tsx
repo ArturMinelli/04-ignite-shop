@@ -15,11 +15,18 @@ interface CartContextType {
 export const CartContext = createContext({} as CartContextType)
 
 export function CartProvider({ children }: CartProviderProps) {
-  const [cartProducts, setCartProducts] = useState([])
+  const [cartProducts, setCartProducts] = useState<Product[]>([])
 
   function addCartProduct(product: Product) {
     const newCartProducts = produce(cartProducts, (draft) => {
-      draft.push(product)
+      const productAlreadyInCart = cartProducts.findIndex((cartProduct) => cartProduct.name === product.name)
+
+      if(productAlreadyInCart === -1) {
+        product.amount = 1
+        draft.push(product)
+      } else {
+        draft[productAlreadyInCart].amount += 1
+      }
     })
 
     setCartProducts(newCartProducts)

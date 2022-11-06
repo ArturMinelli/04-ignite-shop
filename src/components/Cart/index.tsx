@@ -5,6 +5,7 @@ import { X } from 'phosphor-react'
 import Image from 'next/future/image'
 
 import { useCart } from '../../hooks/useCart'
+import { moneyFormatter } from '../../utils/moneyFormatter'
 
 export function Cart() {
   const { cartProducts, removeCartProduct } = useCart()
@@ -34,13 +35,19 @@ export function Cart() {
           <CartProductsContainer>
             {cartProducts.map((product) => {
               return (
-              <CartProduct>
+              <CartProduct
+                key={product.id}
+              >
                 <div className="imageContainer">
                   <Image src={product.imageUrl} alt='t-shirt image' width={80} height={80}/>
                 </div>
                 <div className="infoContainer">
                   <span>{product.name}</span>
-                  <strong>{product.price}</strong>
+                  <strong>
+                    {moneyFormatter.format(product.price/ 100)} {product.amount > 1 && (
+                      <span>Quant. {product.amount}</span>
+                    )}
+                  </strong>
                   <button
                     onClick={() => removeCartProduct(product.id)}
                   >
@@ -59,7 +66,7 @@ export function Cart() {
             </div>
             <div className="total">
               Valor total
-              <span>{totalPrice}</span>
+              <span>{moneyFormatter.format(totalPrice / 100)}</span>
             </div>
             <button>Finalizar compra</button>
           </CartFooter>

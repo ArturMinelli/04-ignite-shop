@@ -13,12 +13,14 @@ import Stripe from "stripe";
 import { CartButton } from "../components/CartButton";
 import { MouseEvent } from "react";
 import { useCart } from "../hooks/useCart";
+import { moneyFormatter } from "../utils/moneyFormatter";
 
 export interface Product {
   id: string;
   name: string;
   imageUrl: string;
   price: number;
+  amount: number;
 }
 
 interface HomeProps {
@@ -62,7 +64,7 @@ export default function Home({ products }: HomeProps) {
               <footer>
                 <div>
                   <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <span>{moneyFormatter.format(product.price / 100)}</span>
                 </div>
                 <CartButton
                   onClick={(event) => handleAddCartProduct(event, product)}

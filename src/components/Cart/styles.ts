@@ -66,6 +66,9 @@ export const CartProduct = styled('div', {
     },
 
     strong: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
       fontSize: '$md',
       fontWeight: 'bold',
     },
