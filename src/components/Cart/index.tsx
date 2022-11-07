@@ -6,13 +6,14 @@ import Image from 'next/future/image'
 
 import { useCart } from '../../hooks/useCart'
 import { moneyFormatter } from '../../utils/moneyFormatter'
+import { QuantityInput } from '../QuantityInput'
 
 export function Cart() {
   const { cartProducts, removeCartProduct } = useCart()
 
   const carProducstAmount = cartProducts.length
   const totalPrice = cartProducts.reduce((accum, product) => {
-    return accum + product.price
+    return accum + (product.price * product.amount)
   }, 0)
 
   return (
@@ -44,9 +45,11 @@ export function Cart() {
                 <div className="infoContainer">
                   <span>{product.name}</span>
                   <strong>
-                    {moneyFormatter.format(product.price/ 100)} {product.amount > 1 && (
-                      <span>Quant. {product.amount}</span>
-                    )}
+                    {moneyFormatter.format(product.price/ 100)}
+                    <QuantityInput
+                      onIncrement={() => null}
+                      onDecrement={() => null}
+                    />
                   </strong>
                   <button
                     onClick={() => removeCartProduct(product.id)}

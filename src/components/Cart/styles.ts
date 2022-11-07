@@ -67,6 +67,7 @@ export const CartProduct = styled('div', {
 
     strong: {
       display: 'flex',
+      width: '100%',
       alignItems: 'center',
       justifyContent: 'space-between',
       fontSize: '$md',
