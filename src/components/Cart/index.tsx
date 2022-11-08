@@ -1,12 +1,11 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import { CartButton } from '../CartButton'
-import { CartContent, CartFooter, CartProduct, CartProductsContainer } from './styles'
+import { CartContent, CartFooter, CartProductsContainer } from './styles'
 import { X } from 'phosphor-react'
-import Image from 'next/future/image'
 
 import { useCart } from '../../hooks/useCart'
 import { moneyFormatter } from '../../utils/moneyFormatter'
-import { QuantityInput } from '../QuantityInput'
+import { CartProduct } from './CartProduct'
 
 export function Cart() {
   const { cartProducts, removeCartProduct } = useCart()
@@ -36,28 +35,10 @@ export function Cart() {
           <CartProductsContainer>
             {cartProducts.map((product) => {
               return (
-              <CartProduct
-                key={product.id}
-              >
-                <div className="imageContainer">
-                  <Image src={product.imageUrl} alt='t-shirt image' width={80} height={80}/>
-                </div>
-                <div className="infoContainer">
-                  <span>{product.name}</span>
-                  <strong>
-                    {moneyFormatter.format(product.price/ 100)}
-                    <QuantityInput
-                      onIncrement={() => null}
-                      onDecrement={() => null}
-                    />
-                  </strong>
-                  <button
-                    onClick={() => removeCartProduct(product.id)}
-                  >
-                    Remover
-                  </button>
-                </div>
-              </CartProduct>
+                <CartProduct
+                  key={product.id}
+                  product={product}
+                />
               )
             })}
           </CartProductsContainer>

@@ -37,7 +37,7 @@ export const CartProductsContainer = styled('div', {
   gap: '0.75rem',
 })
 
-export const CartProduct = styled('div', {
+export const CartProductContainer = styled('div', {
   display: 'flex',
   gap: '0.75rem',
 

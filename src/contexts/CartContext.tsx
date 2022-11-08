@@ -9,6 +9,7 @@ interface CartProviderProps {
 interface CartContextType {
   cartProducts: Product[];
   addCartProduct: (product: Product) => void;
+  updateCartProduct: (productId: string, type: 'increment' | 'decrement') => void;
   removeCartProduct: (productId: string) => void;
 }
 
@@ -32,6 +33,20 @@ export function CartProvider({ children }: CartProviderProps) {
     setCartProducts(newCartProducts)
   }
 
+  function updateCartProduct(productId: string, type: 'increment' | 'decrement') {
+    const newCartProducts = produce(cartProducts, (draft) => {
+      const product = draft.find((product) => product.id === productId)
+
+      if(type === 'increment') {
+        product.amount += 1
+      } else {
+        product.amount -= 1
+      }
+    })
+
+    setCartProducts(newCartProducts)
+  }
+
   function removeCartProduct(productId: string) {
     const newCartProducts = produce(cartProducts, (draft) => {
       const cartProductIndex = draft.findIndex((product) => product.id === productId)
@@ -46,6 +61,7 @@ export function CartProvider({ children }: CartProviderProps) {
       value={{
         cartProducts,
         addCartProduct,
+        updateCartProduct,
         removeCartProduct
       }}
     >
