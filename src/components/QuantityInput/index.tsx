@@ -10,12 +10,12 @@ export interface QuantityInputProps {
 export function QuantityInput({ quantity=0, onIncrement, onDecrement }: QuantityInputProps) {
   return (
     <QuantityInputContainer>
-      <IconWrapper type="button" disabled={quantity <= 0} >
-        <Minus size={22} weight="fill" onClick={onDecrement}/>
+      <IconWrapper type="button" disabled={quantity <= 1} onClick={onDecrement}>
+        <Minus size={22} weight="fill"/>
       </IconWrapper>
-      <input type="number" readOnly value={quantity} min="1" />
-      <IconWrapper type="button">
-        <Plus size={22} weight="fill" onClick={onIncrement}/>
+      <input type="number" readOnly value={quantity} min="1"/>
+      <IconWrapper type="button" onClick={onIncrement}>
+        <Plus size={22} weight="fill"/>
       </IconWrapper>
     </QuantityInputContainer>
   )

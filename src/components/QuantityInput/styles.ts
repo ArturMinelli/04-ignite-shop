@@ -23,6 +23,7 @@ export const QuantityInputContainer = styled('div', {
     width: '100%',
     textAlign: 'center',
     background: 'transparent',
+    border: 'none',
     color: '$gray100',
 
     '&:focus': {

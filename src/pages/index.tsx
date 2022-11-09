@@ -20,7 +20,7 @@ export interface Product {
   name: string;
   imageUrl: string;
   price: number;
-  amount: number;
+  amount?: number;
 }
 
 interface HomeProps {
