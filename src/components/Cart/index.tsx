@@ -73,7 +73,9 @@ export function Cart() {
               Valor total
               <span>{moneyFormatter.format(totalPrice / 100)}</span>
             </div>
-            <button>
+            <button
+              onClick={handleBuyProduct}
+            >
               Finalizar compra
             </button>
           </CartFooter>

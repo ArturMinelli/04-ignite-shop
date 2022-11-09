@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import Head from 'next/head'
 import { useCart } from '../../hooks/useCart'
+import { moneyFormatter } from '../../utils/moneyFormatter'
 
 interface ProductProps {
   product: {
@@ -40,7 +41,7 @@ export default function Product({ product }: ProductProps) {
         </ImageContainer>
         <ProductDetails>
           <h1>{product.name}</h1>
-          <span>{product.price}</span>
+          <span>{moneyFormatter.format(product.price / 100)}</span>
 
           <p>{product.description}</p>
 
@@ -49,6 +50,7 @@ export default function Product({ product }: ProductProps) {
             name: product.name,
             imageUrl: product.imageUrl,
             price: product.price,
+            defaultPriceId: product.defaultPriceId
           })}>
             Colocar na sacola
           </button>

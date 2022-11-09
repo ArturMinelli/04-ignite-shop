@@ -1,12 +1,13 @@
 import { NextApiRequest, NextApiResponse } from "next"
+import { Product } from ".."
 import { stripe } from "../../lib/stripe"
 
 interface CheckoutHandlerRequest {
-  product
+  cartProducts: Product[]
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { cartProducts } = req.body
+  const { cartProducts }: CheckoutHandlerRequest = req.body
 
   if(req.method !== 'POST') {
     return res.status(405).json({ error: "method not allowed" })
@@ -23,7 +24,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const checkoutSession = await stripe.checkout.sessions.create({
     mode: 'payment',
     line_items: cartProducts.map((cartProduct) => {
-      return cartProduct.def
+      return {
+        price: cartProduct.defaultPriceId,
+        quantity: cartProduct.amount
+      }
     }),
     success_url: successUrl,
     cancel_url: cancelUrl

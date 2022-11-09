@@ -20,6 +20,7 @@ export interface Product {
   name: string;
   imageUrl: string;
   price: number;
+  defaultPriceId: string;
   amount?: number;
 }
 
@@ -87,13 +88,14 @@ export const getStaticProps: GetStaticProps = async () => {
   })
 
   const products = response.data.map((product) => {
-    const price = product.default_price as Stripe.Price
+  const price = product.default_price as Stripe.Price
 
     return {
      id: product.id,
      name: product.name,
      imageUrl: product.images[0],
      price: price.unit_amount,
+     defaultPriceId: price.id
     }
   })
 
@@ -105,9 +107,3 @@ export const getStaticProps: GetStaticProps = async () => {
     revalidate: 60 * 60 * 2, // 2 hours
   }
 }
-
-
-// new Intl.NumberFormat('pt-BR', {
-//   style: 'currency',
-//   currency: 'BRL'
-//  }).format(price.unit_amount / 100)
