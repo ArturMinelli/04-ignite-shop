@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from 'next/future/image'
 import Stripe from "stripe";
 import { stripe } from "../lib/stripe";
-import { ImageContainer, SuccessContainer } from "../styles/pages/success";
+import { ImageContainer, ImagesContainer, SuccessContainer } from "../styles/pages/success";
 
 interface SuccessProps {
   customerName: string;
@@ -25,21 +25,23 @@ export default function Success({ customerName, products}: SuccessProps) {
         <meta name="robots" content="noindex"/>
       </Head>
       <SuccessContainer>
-        <h1>Compra efetuada!</h1>
-
-        <ImageContainer>
+        <ImagesContainer>
           {products.map((product) => (
-            <Image src={product.imageUrl} alt={product.name} width={100} height={100}/>
+            <ImageContainer>
+              <Image src={product.imageUrl} alt={product.name} width={175} height={175}/>
+            </ImageContainer>
           ))}
-        </ImageContainer>
+        </ImagesContainer>
+
+        <h1>Compra efetuada!</h1>
 
         {products.length === 1 ? (
           <p>
-            Uhuul <strong>{customerName}</strong>, sua <strong>{products[0].name}</strong> já está a caminho da sua casa
+            Uhuul <strong>{customerName}</strong>, sua <strong>{products[0].name}</strong> já está a caminho da sua casa.
           </p>
         ) : (
           <p>
-            Uhuul <strong>{customerName}</strong>, sua compra de {products.length} produtos já está a caminho da sua casa
+            Uhuul <strong>{customerName}</strong>, sua compra de {products.length} produtos já está a caminho da sua casa.
           </p>
         )}
 
