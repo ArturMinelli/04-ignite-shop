@@ -60,7 +60,12 @@ export default function Home({ products }: HomeProps) {
             <Product
               className="keen-slider__slide"
             >
-              <Image src={product.imageUrl} alt="" width={400} height={400}/>
+              <Image
+                src={product.imageUrl}
+                alt=""
+                width={400}
+                height={400}
+              />
 
               <footer>
                 <div>

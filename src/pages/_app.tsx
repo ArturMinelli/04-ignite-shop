@@ -20,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
             passHref
             href='/'
           >
-            <Image src={logoImg} alt="Ignite Shop logo"/>
+            <a>
+              <Image src={logoImg} alt="Ignite Shop logo" width={140} height={140}/>
+            </a>
           </Link>
 
           <Cart />
